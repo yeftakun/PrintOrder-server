@@ -1,0 +1,26 @@
+{
+  "summary": "Frontend-only PrintOrder app tested end-to-end: Home (alias + store code + quick pills + invalid error + barcode modal), StoreConfirm (store details + confirm), PrintSession (sample doc swap, copies stepper, color mode, scale steppers with 5 step + bounds, terms validation, task submission with toast + drawer, end session). Mobile viewport 390x844 renders without horizontal overflow. All data-testid selectors resolve. Price math verified: 8pg A4 BW 1x=Rp2.800, 2x=Rp5.600, color=Rp24.000.",
+  "tested_scope": ["frontend", "integration"],
+  "passed": [
+    "Alias save -> button changes to 'Tersimpan'",
+    "Quick store pill prefills kode toko input",
+    "Invalid store code shows home-error without navigation",
+    "Valid code navigates to /store-confirm/PO-GRAFIKA-01 with name/address/hours/services",
+    "btn-confirm-store creates session with #PO-xxxxx-X pattern and navigates to /session",
+    "sample-doc-select updates info-file-name, info-file-pages, info-estimated-price in realtime",
+    "btn-copies-up scales price linearly (Rp2.800 -> Rp5.600)",
+    "Color mode 'Warna' recalculates to higher price (Rp24.000)",
+    "btn-scale-up/down adjust in steps of 5 and clamp at 200 upper bound",
+    "Submit without terms shows form-error 'Centang persetujuan syarat & ketentuan.'",
+    "Checked terms + submit creates task, opens drawer, shows task-success-toast with JOB-### id",
+    "btn-toggle-task-list reopens drawer with queued task",
+    "btn-end-session modal + btn-confirm-end clears session and navigates to /",
+    "Barcode scanner modal opens via btn-barcode-scan",
+    "Mobile 390x844: no horizontal overflow (scrollWidth==clientWidth==390), scan button accessible"
+  ],
+  "failed": [],
+  "action_items": [],
+  "success_rate": {"backend": "N/A (not tested per request)", "frontend": "100%"},
+  "retest_needed": false,
+  "full_testing_deferred": true
+}
