@@ -1,12 +1,13 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Printer } from 'lucide-react';
+import { Printer, Shield } from 'lucide-react';
 import { useSession } from '../lib/SessionContext';
 
 export default function Header() {
   const { alias, store, session } = useSession();
   const location = useLocation();
   const onSession = location.pathname.startsWith('/session');
+  const onAdmin = location.pathname.startsWith('/admin');
 
   return (
     <header
@@ -44,8 +45,20 @@ export default function Header() {
             <span className="text-slate-700">{store?.store_code}</span>
           </div>
         ) : (
-          <div className="text-[11px] text-slate-500 hidden sm:block">
-            Kirim dokumen cetak langsung &middot; tanpa antre, tanpa WA
+          <div className="flex items-center gap-3">
+            <div className="text-[11px] text-slate-500 hidden md:block">
+              Kirim dokumen cetak langsung &middot; tanpa antre, tanpa WA
+            </div>
+            {!onAdmin && (
+              <Link
+                to="/admin"
+                className="inline-flex items-center gap-1.5 text-xs font-semibold bg-white border border-slate-200 hover:border-brand-teal hover:text-brand-tealDark text-slate-700 rounded-lg px-2.5 py-1.5"
+                data-testid="link-portal-mitra"
+              >
+                <Shield className="w-3.5 h-3.5" />
+                Portal Mitra
+              </Link>
+            )}
           </div>
         )}
       </div>

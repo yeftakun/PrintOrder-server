@@ -4,6 +4,7 @@ import { SessionProvider } from './lib/SessionContext';
 import Home from './pages/Home';
 import StoreConfirm from './pages/StoreConfirm';
 import PrintSession from './pages/PrintSession';
+import Admin from './pages/Admin';
 import Header from './components/Header';
 
 export default function App() {
@@ -16,6 +17,7 @@ export default function App() {
             <Route path="/" element={<Home />} />
             <Route path="/store-confirm/:code" element={<StoreConfirm />} />
             <Route path="/session" element={<PrintSession />} />
+            <Route path="/admin" element={<Admin />} />
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         </main>
