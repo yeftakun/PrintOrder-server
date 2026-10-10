@@ -1,0 +1,446 @@
+{
+  "project_name": "PrintOrder Frontend",
+  "app_type": "hybrid_fullstack_responsive_web_app",
+  "target_platforms": ["mobile_web", "desktop_web", "tablet_kiosk"],
+  "language": "id-ID",
+  "design_philosophy": {
+    "archetype": "Organic & Earthy / Modern Precision Utility",
+    "concept": "Digital Atelier & Smart Print Kiosk",
+    "description": "Desain antarmuka bersih, tenang, dan terstruktur dengan palet dominan off-white/slate yang disuntik aksen teal-emerald hijau percetakan modern dan cyan-blue teknis. Menghilangkan friksi antrean fotokopi/percetakan konvensional tanpa membuat pengguna awam bingung.",
+    "emotional_tone": "Efisien, Amanah, Presisi, Tenang, Ramah Pengguna"
+  },
+  "color_palette": {
+    "theme_mode": "light_default_with_slate_accents",
+    "background": {
+      "main": "#F8FAFC",
+      "surface": "#FFFFFF",
+      "surface_elevated": "#F1F5F9",
+      "surface_dark": "#0F172A",
+      "surface_card": "#FFFFFF",
+      "scrim_overlay": "rgba(15, 23, 42, 0.45)"
+    },
+    "brand_accents": {
+      "primary_teal": "#0D9488",
+      "primary_teal_hover": "#0F766E",
+      "primary_teal_light": "#CCFBF1",
+      "accent_cyan_blue": "#0284C7",
+      "accent_cyan_light": "#E0F2FE",
+      "accent_emerald": "#059669",
+      "gradient_action": "linear-gradient(135deg, #0D9488 0%, #0284C7 100%)",
+      "gradient_subtle": "linear-gradient(180deg, #F0FDFA 0%, #F8FAFC 100%)"
+    },
+    "neutrals": {
+      "text_primary": "#0F172A",
+      "text_secondary": "#475569",
+      "text_muted": "#64748B",
+      "text_light": "#94A3B8",
+      "border_default": "#E2E8F0",
+      "border_strong": "#CBD5E1",
+      "border_focus": "#0D9488"
+    },
+    "semantic_status": {
+      "store_open": {
+        "badge_bg": "#DCFCE7",
+        "badge_text": "#166534",
+        "dot": "#22C55E",
+        "label": "Buka Sekarang"
+      },
+      "store_closed": {
+        "badge_bg": "#FEE2E2",
+        "badge_text": "#991B1B",
+        "dot": "#EF4444",
+        "label": "Tutup Sementara"
+      },
+      "job_pending": {
+        "badge_bg": "#FEF3C7",
+        "badge_text": "#92400E",
+        "label": "Dalam Antrean"
+      },
+      "job_processing": {
+        "badge_bg": "#E0F2FE",
+        "badge_text": "#075985",
+        "label": "Sedang Dicetak"
+      },
+      "job_completed": {
+        "badge_bg": "#DCFCE7",
+        "badge_text": "#166534",
+        "label": "Selesai"
+      }
+    }
+  },
+  "typography": {
+    "headline_font": "Outfit, Plus Jakarta Sans, sans-serif",
+    "body_font": "Plus Jakarta Sans, system-ui, sans-serif",
+    "mono_numeric_font": "JetBrains Mono, SF Mono, Menlo, monospace",
+    "scale": {
+      "h1_hero": "text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-slate-900 leading-tight",
+      "h2_section": "text-2xl sm:text-3xl font-bold tracking-tight text-slate-900",
+      "h3_card": "text-xl sm:text-2xl font-semibold tracking-tight text-slate-900",
+      "h4_title": "text-lg font-semibold text-slate-800",
+      "body_regular": "text-sm sm:text-base text-slate-700 leading-relaxed",
+      "body_muted": "text-xs sm:text-sm text-slate-500 leading-normal",
+      "label_technical": "text-xs uppercase tracking-wider font-semibold text-slate-500 font-mono"
+    }
+  },
+  "layout_and_spacing": {
+    "shell_strategy": "Mobile-First Fluid Container dengan bottom navigation / sticky action bar pada viewport mobile dan two-column bento pada desktop viewport",
+    "container_max_width": "max-w-5xl mx-auto px-4 sm:px-6 lg:px-8",
+    "spacing_rules": {
+      "card_padding": "p-5 sm:p-7 md:p-8",
+      "section_gap": "gap-6 sm:gap-8",
+      "input_spacing": "space-y-4",
+      "nested_radius": "rounded-2xl for outer card, rounded-xl for inner elements, rounded-lg for buttons/inputs"
+    },
+    "header_spec": {
+      "type": "Crystal Glass Sticky Bar",
+      "classes": "sticky top-0 z-50 backdrop-blur-md bg-white/80 border-b border-slate-200/80 px-4 py-3.5",
+      "elements": [
+        "Brand Logo + Title 'PrintOrder' with live pulsing online indicator",
+        "Active Session Pill (jika sesi aktif, menampilkan Alias & Kode Toko)",
+        "Language & Quick Help Tooltip"
+      ]
+    }
+  },
+  "page_blueprints": {
+    "page_1_home": {
+      "route": "/",
+      "title": "Masuk Sesi Cetak - PrintOrder",
+      "description": "Halaman awal bersih & terarah untuk memasukkan identitas pemesan (Alias) dan Toko Percetakan tujuan.",
+      "layout": {
+        "mobile": "Single column vertical stream dengan visual hero compact dan quick scanner modal",
+        "desktop": "Two-column split: Kiri untuk Branding Story & Panduan Ringkas (3 langkah), Kanan untuk Interactive Form Card"
+      },
+      "components": [
+        {
+          "name": "HomeHeaderBranding",
+          "details": "Logo icon print/dokumen dengan gradient teal-cyan, judul 'PrintOrder', tagline 'Kirim dokumen cetak langsung ke mesin percetakan tanpa antre & tanpa kirim WA'."
+        },
+        {
+          "name": "AliasFormCard",
+          "details": "Input Nama/Alias pelanggan (misal: 'Budi Santoso' atau 'Meja 4 - Rian') dengan auto-restore dari localStorage jika pernah disimpan. Tombol 'Simpan Alias' dengan indikator 'Tersimpan' feedback checklist animasi.",
+          "test_id": "alias-input-field",
+          "save_button_test_id": "btn-save-alias"
+        },
+        {
+          "name": "StoreCodeFormCard",
+          "details": "Input Kode Toko (misal: 'PRINT-KOTA-01' atau 'FASTPRINT88') dengan icon Barcode Scanner di sisi kanan input. Tombol 'Cari Toko' di bawah input. Jika icon barcode ditekan, memunculkan modal/drawer simulated barcode scanner (atau kamera scan real via html5-qrcode) + daftar toko demo cepat untuk kenyamanan testing.",
+          "test_id": "store-code-input-field",
+          "barcode_btn_test_id": "btn-barcode-scan",
+          "search_button_test_id": "btn-search-store"
+        },
+        {
+          "name": "QuickStorePills",
+          "details": "Pilihan toko demo populer di sekitar kampus/perkantoran (misal: 'FAST-01 (Komp. Grafika)', 'MITRA-EDU (Sebelah Kampus B)', 'ALPHA-PRINT (Pusat)') agar user bisa langsung klik dan coba tanpa harus menghafal kode toko."
+        },
+        {
+          "name": "StepFeatureGuide",
+          "details": "3 pilar: 1. Masukkan Kode Toko / Scan, 2. Atur Lembar Cetak & Warna, 3. Tugas Langsung Masuk Antrean Toko."
+        }
+      ]
+    },
+    "page_2_store_confirmation": {
+      "route": "/store-confirm/:storeCode",
+      "title": "Konfirmasi Toko Mitra",
+      "description": "Memastikan pelanggan memesan ke toko percetakan yang tepat sebelum memulai sesi pengiriman dokumen.",
+      "layout": "Centered focus card dengan backdrop ambient soft light dan detail metadata toko yang rapi",
+      "components": [
+        {
+          "name": "StoreProfileBanner",
+          "details": "Foto profil toko (PP Toko) berkualitas tinggi, status badge live ('BUKA SEKARANG' hijau emerald atau 'TUTUP' merah), Nama Toko h2 tebal, Kode Toko badge mono font."
+        },
+        {
+          "name": "StoreMetaGrid",
+          "details": "Grid 2 kolom: Alamat Lengkap Toko (dengan icon lokasi), Jam Operasional Hari Ini (misal: '08:00 - 21:00 WIB', dengan badge hari ini), Telepon / Kontak darurat."
+        },
+        {
+          "name": "ServiceBadgesSection",
+          "details": "Badges layanan yang tersedia pada toko: 'Cetak A4 & F4', 'Laser BW High-Speed', 'Full Color Offset', 'Jilid Spiral & Lakban', 'Kertas Buffalo / Art Paper', 'Plotter Banner'. Setiap badge memiliki icon mini dan tooltip deskripsi."
+        },
+        {
+          "name": "CustomerSessionSummary",
+          "details": "Box kecil yang mengonfirmasi: 'Anda akan masuk sesi cetak sebagai: [Alias Pelanggan]'."
+        },
+        {
+          "name": "ConfirmationActionBar",
+          "details": "Tombol 'Konfirmasi & Mulai Cetak' (CTA primer teal besar) dan tombol sekunder 'Bukan Toko Ini / Ganti Kode'.",
+          "confirm_btn_test_id": "btn-confirm-store",
+          "back_btn_test_id": "btn-cancel-store"
+        }
+      ]
+    },
+    "page_3_print_session": {
+      "route": "/session",
+      "title": "Sesi Cetak Dokumen Aktif",
+      "description": "Layar kerja utama tempat pelanggan mengunggah dokumen, melihat live preview, mengatur parameter cetak lengkap, dan memonitor daftar tugas cetak.",
+      "layout": {
+        "mobile": "Sticky top session bar, tab/accordion preview & spesifikasi, bottom floating submit button",
+        "desktop": "Two-panel workbench: Kiri (Document Preview Canvas & Detail File Info), Kanan (Print Config Form & Print Queue Drawer)"
+      },
+      "components": [
+        {
+          "name": "SessionStatusBar",
+          "details": "Menampilkan Session ID (mono chip: misal #PO-88294-X), Nama Alias Pemesan, Kode Toko Aktif. Dilengkapi tombol 'Akhiri Sesi' (merah/slate outline dengan dialog konfirmasi) dan tombol 'Lihat Daftar Tugas Cetak' (dengan badge counter antrean, misal '3 Tugas').",
+          "session_id_test_id": "session-id-display",
+          "end_session_btn_test_id": "btn-end-session",
+          "toggle_tasks_btn_test_id": "btn-toggle-task-list"
+        },
+        {
+          "name": "DocumentUploadArea",
+          "details": "Zona drag-and-drop cantik dengan animasi dashed border, icon upload, tombol 'Pilih Dokumen', mendukung file PDF, DOCX, PPTX, JPG, PNG. Dilengkapi demo preloaded document selector ('Skripsi_Bab1_Final.pdf', 'Proposal_Kegiatan_Warna.pdf', 'Formulir_Pendaftaran.pdf') untuk uji coba instan tanpa wajib cari file di perangkat.",
+          "upload_input_test_id": "file-picker-input",
+          "upload_trigger_btn_test_id": "btn-select-document"
+        },
+        {
+          "name": "DocumentPreviewAndInfoCard",
+          "details": "Live canvas preview lembar dokumen interaktif (dapat ganti nomor halaman prev/next, zoom level, rotasi). Panel 'Tentang File': Nama File, Ukuran File (MB/KB), Total Halaman terdeteksi, dan Kotak Highlight Estimasi Harga Otomatis (Rp) yang berubah realtime saat mode warna/halaman/salinan diubah.",
+          "file_name_test_id": "info-file-name",
+          "file_size_test_id": "info-file-size",
+          "file_pages_test_id": "info-file-pages",
+          "price_estimate_test_id": "info-estimated-price",
+          "page_preview_canvas_test_id": "document-preview-area"
+        },
+        {
+          "name": "PrintSpecificationForm",
+          "fields": [
+            {
+              "id": "copies",
+              "label": "Jumlah Salinan (Copies)",
+              "type": "stepper_counter_input",
+              "default": 1,
+              "test_id": "input-copies"
+            },
+            {
+              "id": "color_mode",
+              "label": "Mode Cetak",
+              "type": "custom_segmented_dropdown",
+              "options": [
+                {"value": "bw", "label": "Hitam Putih (B/W)", "sub": "Rp 350 / lembar", "icon": "CircleDot"},
+                {"value": "color", "label": "Warna (Full Color)", "sub": "Rp 1.500 / lembar", "icon": "Palette"}
+              ],
+              "default": "bw",
+              "test_id": "dropdown-color-mode"
+            },
+            {
+              "id": "paper_size",
+              "label": "Ukuran Kertas",
+              "type": "select_dropdown",
+              "options": [
+                {"value": "A4", "label": "A4 (210 x 297 mm)", "badge": "Paling Populer"},
+                {"value": "F4", "label": "F4 / Folio (215 x 330 mm)", "badge": "Standar Kantor"},
+                {"value": "A3", "label": "A3 (297 x 420 mm)", "badge": "Format Besar"},
+                {"value": "Legal", "label": "Legal (216 x 356 mm)", "badge": "Dokumen Hukum"}
+              ],
+              "default": "A4",
+              "test_id": "dropdown-paper-size"
+            },
+            {
+              "id": "page_range",
+              "label": "Rentang Halaman",
+              "type": "segmented_input",
+              "subtext": "Contoh: Semua, atau '1-5, 8, 11-14'",
+              "default": "Semua Halaman (1-12)",
+              "test_id": "input-page-range"
+            },
+            {
+              "id": "scale",
+              "label": "Skala Cetak (%)",
+              "type": "number_input_with_triangle_steppers",
+              "description": "Isian angka skala dengan icon segitiga panah atas (up) dan segitiga panah bawah (down) di sisi kanan isian untuk naik/turun skala.",
+              "min": 25,
+              "max": 200,
+              "step": 5,
+              "default": 100,
+              "test_id": "input-scale-percent",
+              "stepper_up_test_id": "btn-scale-up",
+              "stepper_down_test_id": "btn-scale-down"
+            },
+            {
+              "id": "notes",
+              "label": "Catatan Tambahan untuk Kasir/Operator",
+              "type": "textarea",
+              "placeholder": "Contoh: Tolong dijilid mika bening depan, staples 2 kiri, cetak bolak-balik.",
+              "rows": 3,
+              "test_id": "input-additional-notes"
+            },
+            {
+              "id": "terms_and_conditions",
+              "label": "Saya menyetujui syarat & ketentuan pencetakan serta kerahasiaan dokumen PrintOrder",
+              "type": "checkbox",
+              "default": false,
+              "test_id": "checkbox-terms-agree"
+            }
+          ],
+          "submit_action": {
+            "name": "Kirim Tugas Cetak",
+            "type": "primary_cta_button",
+            "description": "Memvalidasi kelengkapan file & checkbox T&C, menambahkan tugas cetak ke antrean toko, memicu toast sukses dengan animasi cetak, dan membuka drawer riwayat tugas.",
+            "test_id": "btn-submit-print-task"
+          }
+        },
+        {
+          "name": "PrintTaskListModalDrawer",
+          "details": "Sheet/Drawer yang muncul saat toggle daftar tugas cetak ditekan. Menampilkan seluruh tugas yang telah dikirim dalam sesi ini: Kode Job (#JOB-101), Nama Dokumen, Spesifikasi Ringkas (A4, Warna, 2 Salinan, Skala 100%), Estimasi Biaya, Status Badge ('Dalam Antrean' / 'Sedang Diproses' / 'Siap Diambil'), dan tombol batalkan tugas (jika belum diproses).",
+          "test_id": "print-tasks-drawer",
+          "task_item_test_id": "print-task-item"
+        }
+      ]
+    }
+  },
+  "visual_enhancers": {
+    "texture_overlay": "Subtle SVG paper noise texture opacity-30 di background canvas pratinjau lembar cetak",
+    "kiosk_barcode_scanner_modal": "Simulasi viewfinder scanner dengan laser horizontal menyala dan opsi switch kamera atau pilih barcode toko otomatis",
+    "live_sheet_renderer": "Visual representasi kertas cetak (white card dengan shadow lembut, watermark preview teks, dan indikator margin) yang menyesuaikan aspect ratio kertas (A4 vs F4 vs A3) dan warna (Grayscale vs RGB)",
+    "price_calculator_formula": {
+      "base_bw_per_page": 350,
+      "base_color_per_page": 1500,
+      "paper_multipliers": {
+        "A4": 1.0,
+        "F4": 1.15,
+        "A3": 2.2,
+        "Legal": 1.2
+      },
+      "formula": "Harga Total = Total Halaman Dipilih * Jumlah Salinan * Tarif Halaman Sesuai Mode Warna * Multiplier Kertas"
+    }
+  },
+  "image_assets": {
+    "store_profile_photos": [
+      {
+        "id": "store_photo_1",
+        "title": "Percetakan Mitra Mandiri & Digital Kiosk",
+        "url": "https://images.unsplash.com/photo-1716737954480-41496faf9541?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjAzMzV8MHwxfHNlYXJjaHw0fHxtb2Rlcm4lMjBzdG9yZWZyb250JTIwY2FmZSUyMGJvdXRpcXVlJTIwY291bnRlcnxlbnwwfHx8fDE3OTE2MDgzMzR8MA&ixlib=rb-4.1.0&q=85",
+        "category": "store_avatar",
+        "alt": "Foto konter percetakan modern mitra PrintOrder"
+      },
+      {
+        "id": "store_photo_2",
+        "title": "Sentra Grafika Express Kampus",
+        "url": "https://images.unsplash.com/photo-1511081692775-05d0f180a065?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjAzMzV8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBzdG9yZWZyb250JTIwY2FmZSUyMGJvdXRpcXVlJTIwY291bnRlcnxlbnwwfHx8fDE3OTE2MDgzMzR8MA&ixlib=rb-4.1.0&q=85",
+        "category": "store_avatar_alternative",
+        "alt": "Interior toko percetakan cepat"
+      }
+    ],
+    "workspace_textures": [
+      {
+        "id": "hero_paper_desk",
+        "title": "Clean Printing Paper Desk",
+        "url": "https://images.unsplash.com/photo-1585119192382-71236d43b689?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2NzF8MHwxfHNlYXJjaHwyfHx3b3Jrc3BhY2UlMjBkZXNrJTIwcGFwZXJ8ZW58MHx8fHwxNzkxNjA4MzQwfDA&ixlib=rb-4.1.0&q=85",
+        "category": "document_preview_backdrop",
+        "alt": "Kertas dokumen cetak rapi di meja kerja"
+      }
+    ]
+  },
+  "sample_store_mock_data": [
+    {
+      "store_code": "PO-GRAFIKA-01",
+      "name": "Sentra Grafika & Digital Print Express",
+      "address": "Jl. Kaliurang KM 5 No. 42, Sleman, D.I. Yogyakarta (Dekat Bundaran Kampus)",
+      "hours_today": "07:30 - 21:30 WIB",
+      "is_open": true,
+      "phone": "+62 812-3456-7890",
+      "photo": "https://images.unsplash.com/photo-1716737954480-41496faf9541?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjAzMzV8MHwxfHNlYXJjaHw0fHxtb2Rlcm4lMjBzdG9yZWZyb250JTIwY2FmZSUyMGJvdXRpcXVlJTIwY291bnRlcnxlbnwwfHx8fDE3OTE2MDgzMzR8MA&ixlib=rb-4.1.0&q=85",
+      "rating": 4.9,
+      "services": [
+        "Laser BW High-Speed",
+        "Full Color A4 & F4",
+        "Plotter A3/A2/A1",
+        "Jilid Spiral Kawat",
+        "Jilid Skripsi Hardcover",
+        "Laminasi Panas/Dingin",
+        "Kertas HVS 75/80/100gr"
+      ]
+    },
+    {
+      "store_code": "FASTPRINT-88",
+      "name": "FastPrint 88 Pusat Fotokopi & Offset",
+      "address": "Jl. Gejayan No. 18, Depok, Sleman, Yogyakarta",
+      "hours_today": "08:00 - 22:00 WIB",
+      "is_open": true,
+      "phone": "+62 821-9876-5432",
+      "photo": "https://images.unsplash.com/photo-1511081692775-05d0f180a065?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjAzMzV8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBzdG9yZWZyb250JTIwY2FmZSUyMGJvdXRpcXVlJTIwY291bnRlcnxlbnwwfHx8fDE3OTE2MDgzMzR8MA&ixlib=rb-4.1.0&q=85",
+      "rating": 4.8,
+      "services": [
+        "Fotokopi Kilat",
+        "Print Warna Inkjet & Laser",
+        "Kertas Buffalo & Art Carton",
+        "Staples Tengah & Blok Lem"
+      ]
+    },
+    {
+      "store_code": "ALPHA-DOC-02",
+      "name": "Alpha DocuPrint 24 Jam",
+      "address": "Jl. Colombo No. 1, Caturtunggal, Yogyakarta",
+      "hours_today": "24 Jam Nonstop",
+      "is_open": true,
+      "phone": "+62 856-1122-3344",
+      "photo": "https://images.unsplash.com/photo-1689037676470-b72230d5236e?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjAzMzV8MHwxfHNlYXJjaHwzfHxtb2Rlcm4lMjBzdG9yZWZyb250JTIwY2FmZSUyMGJvdXRpcXVlJTIwY291bnRlcnxlbnwwfHx8fDE3OTE2MDgzMzR8MA&ixlib=rb-4.1.0&q=85",
+      "rating": 4.7,
+      "services": [
+        "Self Service Print Kiosk",
+        "Print PDF via Web",
+        "Cetak Skripsi Kilat",
+        "Scanner OCR Otomatis"
+      ]
+    }
+  ],
+  "sample_documents_for_testing": [
+    {
+      "name": "Laporan_Skripsi_Bab_1-3_Revisi_Final.pdf",
+      "size": "2.4 MB",
+      "pages": 18,
+      "type": "PDF",
+      "default_range": "1-18",
+      "excerpt": "BAB I PENDAHULUAN\n1.1 Latar Belakang Masalah\nPerkembangan teknologi otomasi pada industri percetakan modern..."
+    },
+    {
+      "name": "Proposal_Sponsorship_Event_Warna.pdf",
+      "size": "5.8 MB",
+      "pages": 8,
+      "type": "PDF",
+      "default_range": "1-8",
+      "excerpt": "PROPOSAL SPONSORSHIP\nFESTIVAL TEKNOLOGI NUSANTARA 2026\nMenghubungkan Inovator Muda dan Industri..."
+    },
+    {
+      "name": "Formulir_Pendaftaran_Magang_2026.docx",
+      "size": "420 KB",
+      "pages": 2,
+      "type": "DOCX",
+      "default_range": "1-2",
+      "excerpt": "KEMENTERIAN PENDIDIKAN DAN KEBUDAYAAN\nFORMULIR PENDAFTARAN PROGRAM MAGANG BERSERTIFIKAT..."
+    }
+  ],
+  "technical_implementation_notes": {
+    "code_language": "JavaScript (React.js with .js / .jsx, NOT .tsx)",
+    "styling_engine": "Tailwind CSS + Tailwind animate",
+    "state_management": {
+      "session_state": {
+        "alias": "stored in localStorage for fast re-use and restored on mount",
+        "selected_store": "stored in React state / localStorage",
+        "session_id": "generated format PO-XXXX-XX",
+        "active_tasks": "array of queued print jobs with status, timestamp, and details",
+        "active_document": "selected or preloaded file object with preview metadata",
+        "print_settings": {
+          "copies": 1,
+          "colorMode": "bw",
+          "paperSize": "A4",
+          "pageRange": "1-18",
+          "scale": 100,
+          "notes": "",
+          "agreeTerms": false
+        }
+      }
+    },
+    "stepper_implementation": {
+      "scale_component": "Input number dengan custom right accessory containing two SVG chevron/triangle buttons: satu panah ke atas (increment +5%) dan satu panah ke bawah (decrement -5%), dengan boundary 25% hingga 200%."
+    },
+    "barcode_scanner_modal": {
+      "simulation": "Modal popup dengan overlay visual kamera pemindai QR/Barcode, laser beam animasi, daftar tombol toko cepat, dan input alternatif agar tester/user dapat mencoba alur scan dengan mulus di desktop maupun smartphone tanpa kendala izin kamera hardware."
+    }
+  },
+  "UNIVERSAL GUIDELINES FOR MAIN AGENT": {
+    "layout_cleanliness": "Pertahankan antarmuka tetap bersih, bernapas lega (padding p-6 atau p-8 pada container), tidak ada warna gradien gelap yang berat.",
+    "brand_text_prominence": "Teks branding 'PrintOrder' hadir elegan di header dan headline halaman awal, lalu bergeser menjadi status bar yang fungsional dan tenang di halaman sesi cetak.",
+    "color_discipline": "Dominan warna slate off-white (#F8FAFC) dengan aksen primer teal modern (#0D9488) dan aksen sekunder cyan-blue (#0284C7). Hindari warna ungu tech gradien klise.",
+    "no_transparent_surfaces": "Dropdown, dialog, popover, dan header WAJIB memiliki latar solid atau crystal glass dengan blur tinggi (bg-white/95 backdrop-blur-md) agar teks tidak tumpang-tindih dengan konten di belakangnya.",
+    "data_testid_completeness": "Semua tombol aksi, input form, selector, dan indikator status WAJIB memiliki data-testid yang jelas sesuai panduan untuk keperluan testing otomatis."
+  }
+}
