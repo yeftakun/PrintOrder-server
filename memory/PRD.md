@@ -32,6 +32,18 @@ Buatkan frontend web PrintOrder (tampilan web + mobile) dalam Bahasa Indonesia d
 - [x] Fully responsive (mobile 390px tanpa overflow horizontal)
 - [x] Semua elemen interaktif memiliki data-testid
 
+## Admin Portal - IMPLEMENTED (10 Jan 2026, iteration 2 - 37/37 tests pass)
+- [x] Route `/admin` dengan header: badge status toko (TOKO BUKA/TUTUP), tombol Klien Desktop, profile pill (username + kode toko)
+- [x] 5 tab terpisah: Ringkasan, Billing, Toko, Layanan, Bantuan
+- [x] **Ringkasan**: salam dinamis + 5 stat card (klien online, tugas hari ini, selesai, ditolak/batal, estimasi pendapatan) + tombol Lihat Semua Tugas
+- [x] **Billing**: daftar order + refresh, info kredit (bisa dipakai, terjadwal, total hak kredit, kedaluwarsa, bisa dipakai sekarang, free active), 4 plan card (Free/Starter/Pro-Paling Hemat/Beli Kredit)
+- [x] **Toko**: pengaturan toko (PP + ganti foto, nama, kode, status dropdown, waktu operasional via Modal A1, kontak, alamat, QR + download), tabel Klien Desktop (nama, client ID, status online/siap, printer aktif, terakhir aktif, tombol Unbind + info popover + refresh)
+- [x] **Layanan**: ukuran kertas (5 checkbox opsi), mode warna (B/W + Warna checkbox + harga editable), simpan pengaturan layanan
+- [x] **Bantuan**: Coming Soon placeholder
+- [x] **Modal A0** (Profile): logout, pengaturan akun (username, email, PIN status badge), ganti password (lama/baru/konfirmasi + lupa password link + validasi 6+ karakter dan match), kelola PIN (password + PIN 4-8 digit + konfirmasi) - PIN sukses mengubah status badge jadi "Aktif"
+- [x] **Modal A1** (Hours): 7 hari dengan checkbox + input jam buka/tutup (disabled saat checkbox off), simpan & batal
+- [x] Link "Portal Mitra" di header utama untuk navigasi dari halaman pelanggan ke /admin
+
 ## Validated via Testing Agent (iteration_1.json - 100% pass)
 15/15 skenario lulus: alias save, quick pill prefill, invalid code error, barcode modal, store confirm navigation, session creation, realtime price calc, copies linear scaling, color mode recalc, scale steppers clamping, T&C validation, task drawer, end session flow, mobile viewport.
 

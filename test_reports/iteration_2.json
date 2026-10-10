@@ -1,0 +1,24 @@
+{
+  "summary": "Frontend-only testing of new /admin (Portal Mitra) page. 37/37 functional checks passed covering: header (store status badge TOKO BUKA, download client btn, profile pill), all 5 tabs rendering corresponding tab-content panels, Ringkasan 5 stat cards + view-all-tasks btn, Billing credits grid + free-active-info + 4 plan cards (Pro Paling Hemat badge) + plan toast, Toko store settings editable + QR + save toast + Hours Modal (Sunday checkbox toggles enable open/close inputs, save closes & shows toast, cancel closes without saving), Desktop clients table with Yefta row, info popover toggle, refresh toast, unbind toast, Services tab paper + color-mode checkboxes toggle, price input disabled when checkbox off, save toast, Help Coming Soon, Profile Modal (pin-display disabled, empty username error, successful save updates header pill), password mismatch error + success flow, PIN save success + pin-status-badge changes to 'Aktif', logout navigates to '/', link-portal-mitra on homepage navigates to /admin, mobile 390x844 has no horizontal overflow.",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": [
+      {"screen": "Toko tab > Klien Desktop", "issues": ["client-info-popover does not auto-close on outside click; it overlaps the Unbind button in table header area (minor UX; user must click info button again to close)"]}
+    ]
+  },
+  "test_report_links": [],
+  "action_items": [],
+  "critical_code_review_comments": [
+    "Admin.js is 850 lines - consider splitting SummaryTab / BillingTab / StoreTab / ServicesTab into separate files under components/admin/ for maintainability.",
+    "QR url hardcoded to http://localhost:3000/p/${code} - should use process.env.REACT_APP_BACKEND_URL or window.location.origin for production correctness.",
+    "client-info-popover: add click-outside handler to auto-dismiss (improves UX and avoids blocking adjacent buttons like unbind)."
+  ],
+  "updated_files": [],
+  "success_rate": {"backend": "N/A (not tested per request)", "frontend": "100%"},
+  "seed_data_creation": "none - all mock data in adminMock.js",
+  "retest_needed": false,
+  "should_main_agent_self_test": false,
+  "context_for_next_testing_agent": "Admin page fully covered. All data-testids resolve. Toast uses data-testid='admin-toast' and auto-dismisses ~2.2s. ProfileModal is pure React state (no backend). QR URL uses hardcoded localhost - flag for prod. If retest, remember to close client-info-popover before clicking btn-unbind in the same row to avoid pointer-event interception."
+}
